@@ -39,23 +39,13 @@ const ResultClients = () => {
         setData(initialData);
     }, [initialData]);
 
-    // const handleFilter = () => {
-
-    //     const filteredClients = data.filter(client => {
-    //         const nameMatch = client.firstName.toLowerCase().includes(nameFilter.toLowerCase());
-    //         const emailMatch = client.email.toLowerCase().includes(emailFilter.toLowerCase());
-    //         const cpfMatch = client.cpf.includes(cpfFilter);
-    //         const birthDateMatch = formattedBirthDate.includes(birthDateFilter);
-    //         console.log(birthDateMatch);
-
-    //         return nameMatch && emailMatch && cpfMatch && birthDateMatch
-    //     });
-    //     setFilteredData(filteredClients);
-
-    // };
 
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
+            <div className='shadow-sm px-2 py-3 mb-3 rounded text-center'>
+                <h3>Clientes</h3>
+            </div>
+
             <FiltersClient />
 
             <div className="table-result shadow px-2 py-3 mt-4 rounded">

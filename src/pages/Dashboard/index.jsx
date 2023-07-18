@@ -1,10 +1,15 @@
 import Navbar from '../../components/Navbar';
+import StorageMonthsChar from '../../components/StorageMonthsChart/StorageMonthsChar';
+import StorageTypeChart from '../../components/StorageTypesChart/StorageTypesChart';
 import './style.css'
+// import Chart from "chart.js/auto";
+// import { CategoryScale } from "chart.js";
+// import { useState } from "react";
 
-export default function Dashboard() {
+function Dashboard() {
 
     function nameCompany(nameCompany) {
-        const name = `${nameCompany}` 
+        const name = `${nameCompany}`
         return name;
     }
 
@@ -14,31 +19,50 @@ export default function Dashboard() {
         return year;
     }
 
+    // const data = {
+    //     labels: ['Mon', 'Tue', 'Wed'],
+    //     datasets: [
+    //         {
+    //             label: '369',
+    //             data: [3, 6, 9],
+    //             backgroundColor: ['aqua'],
+    //             borderColor: 'black',
+    //             borderWidth: 1
+    //         },
+    //         {
+    //             label: '333',
+    //             data: [3, 3, 3],
+    //             backgroundColor: ['blue'],
+    //             borderColor: 'black',
+    //             borderWidth: 1
+    //         }
+    //     ]
+    // }
+
+    // const options = {
+
+    // }
+
     return (
         <div className="section-container">
             <div className="content">
                 <Navbar />
-                <div className="header">
-                    <div className="name-company">
-                        <h1>Agenda - {nameCompany('Corte do baiano')}</h1>
-                    </div>
-                    <div className="year">
-                        <h1>{getYear()}</h1>
-                    </div>
+                <div className='shadow-sm px-2 py-3 mb-3 rounded text-center'>
+                    <h3>Dashboard</h3>
                 </div>
-                <div className="choose-hour">
-                    <div className="get-month">
-                        <input type="month" name="month" id="month" />
-                    </div>
-                    <div className="week">
-                        <div className='box'>1 semana</div>
-                        <div className='box'>1 semana</div>
-                        <div className='box'>1 semana</div>
-                        <div className='box'>1 semana</div>
-                        <div className='box'>1 semana</div>
-                    </div>
+
+                <div className="sub-content d-flex justify-content-center gap-3">
+                    <StorageTypeChart />
+                    <StorageMonthsChar />
+                </div>
+                <div className="sub-content d-flex justify-content-center gap-3">
+                    <StorageTypeChart />
+                    <StorageMonthsChar />
                 </div>
             </div>
+
         </div>
     )
 }
+
+export default Dashboard

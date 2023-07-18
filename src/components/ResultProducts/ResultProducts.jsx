@@ -32,6 +32,9 @@ const ResultProducts = () => {
 
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
+            <div className='shadow-sm px-2 py-3 mb-3 rounded text-center'>
+                <h3>Produtos</h3>
+            </div>
             <FiltersProduct />
 
             <div className="table-result shadow px-2 py-3 mt-4 rounded">
@@ -43,16 +46,16 @@ const ResultProducts = () => {
                     </div>
                     <div>
 
-                    <Link to={'/product/newProduct'}>
-                        <button
-                            type="button"
-                            className="btn btn-primary d-flex align-items-center"
+                        <Link to={'/product/newProduct'}>
+                            <button
+                                type="button"
+                                className="btn btn-primary d-flex align-items-center"
                             // onClick={''}
-                        >
-                            <AddIcon />
-                            Novo
-                        </button>
-                    </Link>
+                            >
+                                <AddIcon />
+                                Novo
+                            </button>
+                        </Link>
 
                     </div>
                 </div>
