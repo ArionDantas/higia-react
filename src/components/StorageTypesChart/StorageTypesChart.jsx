@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 
-const StorageTypesChart = () => {
+const StorageTypesChart = ({title}) => {
 
     const labels = ['Medicamentos', 'Dermocosméticos', 'Perfumaria', 'Genéricos', 'Nutrição',];
 
@@ -72,7 +72,7 @@ const StorageTypesChart = () => {
     };
     return (
         <div>
-            <CardChart title={'Estoque dividido em tipos'}  chart={<Pie style={{ width: '400px', height: '400px' }} data={data}
+            <CardChart title={title}  chart={<Pie style={{ width: '400px', height: '400px' }} data={data}
             options={options}
             ></Pie>} />
         </div>

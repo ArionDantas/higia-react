@@ -51,13 +51,16 @@ function Dashboard() {
                     <h3>Dashboard</h3>
                 </div>
 
-                <div className="sub-content d-flex justify-content-center gap-3">
-                    <StorageTypeChart />
-                    <StorageMonthsChar />
+                <div className="sub-content d-flex justify-content-center gap-3 mb-5">
+                    <StorageMonthsChar title={'Estoque atual'} />
+                    <StorageTypeChart title={'Estoque dividido em tipos'} />
+                </div>
+                <div className='shadow px-3 py-3 mb-3 rounded'>
+                    <h3>Dados dos anos anteriores</h3>
                 </div>
                 <div className="sub-content d-flex justify-content-center gap-3">
-                    <StorageTypeChart />
-                    <StorageMonthsChar />
+                    <StorageTypeChart title={'Estoque 2021/2022'}/>
+                    <StorageMonthsChar title={'Estoque dos anos 2021/2022'} />
                 </div>
             </div>
 
