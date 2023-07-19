@@ -48,12 +48,12 @@ const ResultClients = () => {
 
             <FiltersClient />
 
-            <div className="table-result shadow px-2 py-3 mt-4 rounded">
-
+            <div className="table-result shadow px-2 py-3 rounded">
+                {/* 
                 <div className="result-filter d-flex align-content-center gap-2">
                     <ChecklistIcon />
                     <h6>Resultado pesquisa</h6>
-                </div>
+                 </div> */}
                 <hr />
 
                 <table className="table table-hover align-middle">
@@ -75,11 +75,11 @@ const ResultClients = () => {
                         ) : (
                             data?.map(clients => (
                                 <tr key={clients.cpf}>
-                                    <td>{clients.cpf}</td>
-                                    <td>{clients.firstName} {clients.lastName}</td>
-                                    <td>{clients.email}</td>
-                                    <td>{clients.phone}</td>
-                                    <td>{dateFormatter(clients.birthDate)}</td>
+                                    <td className='client-cpf'>{clients.cpf}</td>
+                                    <td className='client-firstName'>{clients.firstName} {clients.lastName}</td>
+                                    <td className='client-email'>{clients.email}</td>
+                                    <td className='client-phone'>{clients.phone}</td>
+                                    <td className='client-birthDate'>{dateFormatter(clients.birthDate)}</td>
                                     <td className="text-center">
                                         <div className='d-flex gap-1'>
                                             <Link to={`/client/viewClient/1`}>

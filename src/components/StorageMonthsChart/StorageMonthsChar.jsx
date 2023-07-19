@@ -60,7 +60,7 @@ const StorageMonthsChar = ({title}) => {
 
     return (
         <div>
-            <CardChart title={title} chart={<Line options={options} data={data} style={{ width: '600px', height: '600px' }} />}/>
+            <CardChart title={title} chart={<Line options={options} data={data} style={{ width: '100%', height: '600px' }} />}/>
         </div>
     )
 }

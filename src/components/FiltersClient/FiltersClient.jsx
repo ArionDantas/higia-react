@@ -32,7 +32,7 @@ const FiltersClient = ({ data, setFilteredData }) => {
   };
 
   return (
-    <div className="filters shadow-sm px-2 py-3 rounded">
+    <div className="filters px-2 rounded">
       <div className="header-filter d-flex align-content-center gap-2">
         <TuneIcon />
         <h6>Filtros de pesquisa</h6>
@@ -40,13 +40,13 @@ const FiltersClient = ({ data, setFilteredData }) => {
       <hr />
       <div className="row">
       <div className="col">
-          <div className="mb-3">
+          <div className="">
             <label htmlFor="inputNomeClientePesquisa" className="form-label">Pesquisar cliente</label>
             <input
               type="text"
               className="form-control"
               id="inputNomeClientePesquisa"
-              placeholder="Pesquisar nome"
+              placeholder="Pesquisar..."
               onChange={handleFilter}
             />
           </div>
@@ -91,7 +91,7 @@ const FiltersClient = ({ data, setFilteredData }) => {
           </div>
         </div> */}
       </div>
-
+{/* 
       <div className="buttons d-flex justify-content-end gap-1">
         <button
           type="button"
@@ -115,7 +115,7 @@ const FiltersClient = ({ data, setFilteredData }) => {
           <ClearIcon />
           Limpar
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
