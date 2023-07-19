@@ -7,7 +7,6 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 10px;
   height: 100vh;
-  background-color:  #c0db54
 `;
 
 export const Content = styled.div`
@@ -18,7 +17,7 @@ export const Content = styled.div`
   flex-direction: column;
   width: 100%;
   box-shadow: 0 1px 2px #0003;
-  background-color: white;
+  background-color: #c0db54;
   max-width: 350px;
   padding: 20px;
   border-radius: 5px;

@@ -21,7 +21,11 @@ const Signup = () => {
     } else if (email !== emailConf) {
       setError("Os e-mails não são iguais");
       return;
+    } else if ( senha <= 6) {
+      setError('A senha tem que ter mais de 6 dígitos')
+      return;
     }
+    //else if (senha !== )
 
     const res = signup(email, senha);
 
@@ -36,8 +40,8 @@ const Signup = () => {
 
   return (
     <C.Container>
-      <C.Label>SISTEMA DE LOGIN</C.Label>
       <C.Content>
+      <C.Label>SISTEMA DE LOGIN</C.Label>
         <Input
           type="email"
           placeholder="Digite seu E-mail"

@@ -72,7 +72,7 @@ const StorageTypesChart = ({title}) => {
     };
     return (
         <div>
-            <CardChart title={title}  chart={<Pie style={{ width: '400px', height: '400px' }} data={data}
+            <CardChart title={title}  chart={<Pie style={{ width: '100%', height: '400px' }} data={data}
             options={options}
             ></Pie>} />
         </div>
