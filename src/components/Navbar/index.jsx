@@ -8,7 +8,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home'
 import WifiProtectedSetupIcon from '@mui/icons-material/WifiProtectedSetup'
 import InventoryIcon from '@mui/icons-material/Inventory';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+// import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { useState } from 'react';
 
 function Navbar() {
@@ -42,9 +42,8 @@ function Navbar() {
                                     />
                                 </a>
                                 <ul
-                                    className={`dropdown-menu mt-3 text-small dropdown-menu-end${dropdownOpen ? " show" : ""}`}
+                                    className={`dropdown-menu mt-3 text-small bg-white dropdown-menu-end${dropdownOpen ? " show" : ""}`}
                                     data-popper-placement="rigth-start"
-                                    style={{ zIndex: 9999 }}
                                 >
                                     <li><a className="dropdown-item" href="#">Settings</a></li>
                                     <li><a className="dropdown-item" href="#">Profile</a></li>

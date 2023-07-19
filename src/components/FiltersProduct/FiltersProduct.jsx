@@ -24,7 +24,7 @@ const FiltersClient = () => {
         <TuneIcon />
         <h6>Filtros de pesquisa</h6>
       </div>
-      <hr />
+      <hr style={{zIndex: -1, position: 'relative' }} />
       <div className="row">
       <div className="col">
           <div className="mb-3">

@@ -61,3 +61,8 @@
     align-items: center;
 }
 
+.dropdown-menu {
+    position: absolute;
+    z-index: 9999; /* Defina um valor alto para garantir que fique acima de outros elementos */
+  }
+

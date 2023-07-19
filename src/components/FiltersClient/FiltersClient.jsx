@@ -37,9 +37,9 @@ const FiltersClient = ({ data, setFilteredData }) => {
         <TuneIcon />
         <h6>Filtros de pesquisa</h6>
       </div>
-      <hr />
+      <hr style={{zIndex: -1, position: 'relative' }}/>
       <div className="row">
-      <div className="col">
+      <div className="col-4">
           <div className="mb-3">
             <label htmlFor="inputNomeClientePesquisa" className="form-label">Pesquisar cliente</label>
             <input
