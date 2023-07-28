@@ -30,14 +30,20 @@ const ResultProducts = () => {
         setData(initialData);
     }, [initialData]);
 
+    const style = {
+        width: '100px',
+    }
+
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
-            <div className='shadow-sm px-2 py-3 mb-3 rounded text-center'>
+            <div className='shadow-sm px-2 py-3 mb-5 rounded d-flex align-items-center gap-3'>
+                <img src="src/img/logo-higia-bgremove.png" alt="" srcset="" style={style} />
                 <h3>Produtos</h3>
             </div>
+
             <FiltersProduct />
 
-            <div className="table-result shadow px-2 py-3 mt-4 rounded">
+            <div className="table-result shadow px-2 py-3 rounded">
 
                 <div className="result-filter d-flex align-content-center justify-align-content-between gap-2 w-100">
                     <div className=' d-flex align-content-center gap-2 w-100'>
@@ -59,7 +65,7 @@ const ResultProducts = () => {
 
                     </div>
                 </div>
-                <hr />
+                <hr style={{zIndex: -1, position: 'relative' }}/>
 
                 <table className="table table-hover align-middle">
                     <thead className='table'>

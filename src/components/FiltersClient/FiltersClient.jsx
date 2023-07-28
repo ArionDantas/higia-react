@@ -21,10 +21,10 @@ const FiltersClient = ({ data, setFilteredData }) => {
 
   const handleFilter = () => {
 
-    $(document).ready(function(){
-      $("#inputNomeClientePesquisa").on("keyup", function() {
+    $(document).ready(function () {
+      $("#inputNomeClientePesquisa").on("keyup", function () {
         var value = $(this).val().toLowerCase();
-        $("#listagem-clientes tr").filter(function() {
+        $("#listagem-clientes tr").filter(function () {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
@@ -37,9 +37,9 @@ const FiltersClient = ({ data, setFilteredData }) => {
         <TuneIcon />
         <h6>Filtros de pesquisa</h6>
       </div>
-      <hr style={{zIndex: -1, position: 'relative' }}/>
+      <hr style={{ zIndex: -1, position: 'relative' }} />
       <div className="row">
-      <div className="col">
+        <div className="col-4">
           <div className="mb-3">
             <label htmlFor="inputNomeClientePesquisa" className="form-label">Pesquisar cliente</label>
             <input
@@ -91,7 +91,7 @@ const FiltersClient = ({ data, setFilteredData }) => {
           </div>
         </div> */}
       </div>
-{/* 
+      {/* 
       <div className="buttons d-flex justify-content-end gap-1">
         <button
           type="button"
@@ -121,4 +121,3 @@ const FiltersClient = ({ data, setFilteredData }) => {
 };
 
 export default FiltersClient;
-  

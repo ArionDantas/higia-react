@@ -8,10 +8,10 @@ const FiltersClient = () => {
 
   const handleFilter = () => {
 
-    $(document).ready(function(){
-      $("#inputNomeProdutoPesquisa").on("keyup", function() {
+    $(document).ready(function () {
+      $("#inputNomeProdutoPesquisa").on("keyup", function () {
         var value = $(this).val().toLowerCase();
-        $("#listagem-produtos tr").filter(function() {
+        $("#listagem-produtos tr").filter(function () {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
@@ -19,21 +19,21 @@ const FiltersClient = () => {
   };
 
   return (
-    <div className="filters shadow-sm px-2 py-3 rounded">
+    <div className="filters px-2 py-3 rounded">
       <div className="header-filter d-flex align-content-center gap-2">
         <TuneIcon />
         <h6>Filtros de pesquisa</h6>
       </div>
-      <hr style={{zIndex: -1, position: 'relative' }} />
+      <hr style={{ zIndex: -1, position: 'relative' }} />
       <div className="row">
-      <div className="col">
+        <div className="col-4">
           <div className="mb-3">
-            <label htmlFor="inputNomeProdutoPesquisa" className="form-label">Pesquisar produtos</label>
+            <label htmlFor="inputNomeClientePesquisa" className="form-label">Pesquisar cliente</label>
             <input
               type="text"
               className="form-control"
               id="inputNomeProdutoPesquisa"
-              placeholder="Pesquisar código de barras"
+              placeholder="Pesquisar..."
               onChange={handleFilter}
             />
           </div>
@@ -93,33 +93,6 @@ const FiltersClient = () => {
           </div>
         </div>
       </div> */}
-      <div className="buttons d-flex justify-content-end gap-1">
-        <button
-          type="button"
-          className="btn btn-success d-flex align-items-center"
-          onClick={handleFilter}
-        >
-          <SearchIcon />
-          Buscar
-        </button>
-        <button
-          type="button"
-          className="btn btn-danger d-flex align-items-center"
-          onClick={() => {
-            setEanFilter('');
-            setNameFilter('');
-            setTypeFilter('');
-            setDescriptionFilter('');
-            setEanFilter('');
-            setValueFilter('');
-            setSaleFreeFilter('');
-            setFilteredData(data);
-          }}
-        >
-          <ClearIcon />
-          Limpar
-        </button>
-      </div>
     </div>
   );
 };

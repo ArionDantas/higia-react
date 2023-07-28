@@ -32,13 +32,19 @@ function Dashboard() {
         return year;
     }
 
+    const style = {
+        width: '100px',
+    }
+
     return (
         <div className="section-container">
             <div className="content">
                 <Navbar />
-                <div className='shadow px-2 py-3 mb-3 rounded text-center'>
+                <div className='shadow-sm px-2 py-3 mb-5 rounded d-flex align-items-center gap-3'>
+                    <img src="src/img/logo-higia-bgremove.png" alt="" srcset="" style={style} />
                     <h3>Dashboard</h3>
                 </div>
+
 
                 <div className="d-flex align-items-center justify-content-around my-5">
 
@@ -70,7 +76,6 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

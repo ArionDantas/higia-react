@@ -39,10 +39,15 @@ const ResultClients = () => {
         setData(initialData);
     }, [initialData]);
 
+    const style = {
+        width: '100px',
+    }
+
 
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
-            <div className='shadow-sm px-2 py-3 mb-3 rounded text-center'>
+            <div className='shadow-sm px-2 py-3 mb-5 rounded d-flex align-items-center gap-3'>
+                <img src="src/img/logo-higia-bgremove.png" alt="" srcset="" style={style} />
                 <h3>Clientes</h3>
             </div>
 
@@ -54,7 +59,7 @@ const ResultClients = () => {
                     <ChecklistIcon />
                     <h6>Resultado pesquisa</h6>
                  </div> */}
-                <hr />
+                <hr style={{ zIndex: -1, position: 'relative' }} />
 
                 <table className="table table-hover align-middle">
                     <thead className='table'>

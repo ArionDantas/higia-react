@@ -8,7 +8,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home'
 import WifiProtectedSetupIcon from '@mui/icons-material/WifiProtectedSetup'
 import InventoryIcon from '@mui/icons-material/Inventory';
-// import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { useState } from 'react';
 
 function Navbar() {
@@ -33,13 +33,15 @@ function Navbar() {
                                     className={`d-block link-body-emphasis text-decoration-none dropdown-toggle text-dark${dropdownOpen ? " show" : ""}`}
                                     onClick={toggleDropdown}
                                 >
-                                    <img
-                                        src="https://github.com/mdo.png"
+                                    {/* <img
+                                        src="src\img\user.png"
                                         alt="mdo"
                                         width="32"
                                         height="32"
                                         className="rounded-circle"
-                                    />
+                                    /> */}
+
+                                    <AdminPanelSettingsIcon sx={{width: '32px', height: '32px'}}/>
                                 </a>
                                 <ul
                                     className={`dropdown-menu mt-3 text-small bg-white dropdown-menu-end${dropdownOpen ? " show" : ""}`}
