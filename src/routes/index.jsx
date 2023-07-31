@@ -12,6 +12,7 @@ import ViewProduct from '../components/ViewProduct/ViewProduct'
 import EditProduct from '../components/EditProduct/EditProduct'
 import NewProduct from '../components/NewProduct/NewProduct'
 import DashBoard from '../pages/Dashboard'
+import Teste from "../components/teste";
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -26,8 +27,8 @@ const RoutesApp = () => {
         <Routes>
           <Route exact path="/home" element={<Private Item={Home} />} />
           <Route exact path="/client" element={<Private Item={Client} />} />
-          <Route exact path="/client/editClient/:cpf" element={<Private Item={EditClient} />} />
-          <Route exact path="/client/viewClient/:cpf" element={<Private Item={ViewClient} />} />
+          <Route exact path="/client/editClient/:id" element={<Private Item={EditClient} />} />
+          <Route exact path="/client/viewClient/:id" element={<Private Item={ViewClient} />} />
           <Route exact path="/product" element={<Private Item={Product} />} />
           <Route exact path="/product/viewProduct/:id" element={<Private Item={ViewProduct} />} />
           <Route exact path="/product/editProduct/:id" element={<Private Item={EditProduct} />} />
@@ -36,6 +37,7 @@ const RoutesApp = () => {
           <Route path="/" element={<Signin />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route path="*" element={<Signin />} />
+          <Route path="/teste" element={<Teste />} />
         </Routes>
       </Fragment>
     </BrowserRouter>

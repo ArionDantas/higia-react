@@ -50,7 +50,7 @@ function Navbar() {
                                     <li><a className="dropdown-item" href="#">Settings</a></li>
                                     <li><a className="dropdown-item" href="#">Profile</a></li>
                                     <li><hr className="dropdown-divider" /></li>
-                                    <li><button type="button" className="dropdown-item" onClick={() => [signout(), navigate("/")]}>Sair</button></li>
+                                    <li><button type="button" className="dropdown-item text-danger" onClick={() => [signout(), navigate("/")]}>Sair</button></li>
                                 </ul>
                             </div>
                         </div>

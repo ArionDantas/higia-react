@@ -5,25 +5,25 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import viewClientImage from '../../img/viewClient.svg';
-import LoadingClient from '../LoadingClient/LoadingClient';
+import LoadingProduct from '../LoadingProduct/LoadingProduct';
 import ErrorSearch from '../ErrorSearch/ErrorSearch';
 import Navbar from '../Navbar';
 
 
 const ViewClient = () => {
 
-    const { id } = useParams();
+    const { cpf } = useParams();
 
     // const location = useLocation();
     // const cpf = location.state.cpf.value;
 
-    console.log(id);
+    console.log(cpf);
 
-    const apiKey = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/${id}`;
+    const apiKey = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/${cpf}`;
 
     const getProduct = async () => {
         const response = await axios.get(apiKey);
-        return response.data.content;
+        return response.data;
     };
 
     const { data: product, isLoading, isError } = useQuery({
@@ -45,14 +45,14 @@ const ViewClient = () => {
                                 isLoading ? (
                                     <>
                                         <LoadingSpinner />
-                                        <LoadingClient />
+                                        <LoadingProduct />
                                     </>
                                 ) :
 
                                     isError ? (
                                         <>
                                             <ErrorSearch message={'Produto não foi encontrado!'} onCloseTo={'/product'} />
-                                            <LoadingClient />
+                                            <LoadingProduct />
                                         </>
                                     ) :
 
@@ -68,7 +68,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.id == null ? '' : product.id}
+                                                                value={product.content.id == null ? '' : product.content.id}
                                                             />
                                                         </div>
                                                     </div>
@@ -80,7 +80,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.ean == null ? '' : product.ean}
+                                                                value={product.content.ean == null ? '' : product.content.ean}
                                                             />
                                                         </div>
                                                     </div>
@@ -97,7 +97,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.name == null ? '' : product.name}
+                                                                value={product.content.name == null ? '' : product.name}
                                                             />
                                                         </div>
                                                     </div>
@@ -109,7 +109,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.type == null ? '' : product.type}
+                                                                value={product.content.type == null ? '' : product.content.type}
                                                             />
                                                         </div>
                                                     </div>
@@ -124,7 +124,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.description == null ? '' : product.description}
+                                                                value={product.content.description == null ? '' : product.content.description}
                                                             />
                                                         </div>
                                                     </div>
@@ -139,7 +139,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={`R$` + product.value == null ? '' : product.value}
+                                                                value={`R$` + product.content.value == null ? '' : product.content.value}
                                                             />
                                                         </div>
                                                     </div>
@@ -152,7 +152,7 @@ const ViewClient = () => {
                                                                 className="form-control"
                                                                 type="text"
                                                                 disabled
-                                                                value={product.saleFree == null ? '' : product.saleFree}
+                                                                value={product.content.saleFree == null ? '' : product.content.saleFree}
                                                             />
                                                         </div>
                                                     </div>

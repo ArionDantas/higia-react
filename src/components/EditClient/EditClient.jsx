@@ -1,17 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { storage } from "../../services/firebase";
+import './EditClient.css'
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import viewEditUser from '../../img/editUser.svg';
+import UploadImg from '../../img/upload-img.svg'
 import SaveIcon from '@mui/icons-material/Save';
 import LoadingClient from '../LoadingClient/LoadingClient';
 import ErrorSearch from '../ErrorSearch/ErrorSearch';
 import Navbar from '../Navbar';
 
 const EditClient = () => {
+
+    const [imgURL, setImgURL] = useState(UploadImg);
+    const [progressPorcent, setPorgessPorcent] = useState(0);
+
+    console.log(imgURL);
+
+    const handleSubmitImg = (event) => {
+        event.preventDefault();
+        const file = event.target[0]?.files[0];
+        if (!file) return;
+
+        const storageRef = ref(storage, `images/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const progress = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                setPorgessPorcent(progress);
+            },
+            (error) => {
+                alert(error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImgURL(downloadURL);
+                });
+            }
+        );
+    };
 
     const { cpf } = useParams();
 
@@ -139,6 +175,50 @@ const EditClient = () => {
 
                                     (
                                         <div className="card-view-client">
+
+                                            <div className="row d-flex align-items-center mb-3">
+                                                <label className='mb-3'>Imagem:</label>
+                                                <div className="col d-flex flex-column gap-2 image-container mb-3">
+
+                                                    {imgURL && imgURL !== UploadImg ? (
+                                                        <img src={imgURL} alt="Imagem 1" className='border rounded p-1' />
+                                                    ) : (
+                                                        <img src={UploadImg} alt="Imagem Padrão" className='border rounded p-1' />
+                                                    )}
+
+                                                    {/* {imgURL && } */}
+                                                    <div>
+                                                        {progressPorcent === 100 ? (
+                                                            <>
+                                                                <div className='progress'>
+                                                                    <div className="progress-bar bg-success" style={{ width: `${progressPorcent}%` }}>Sucesso!</div>
+                                                                </div>
+                                                            </>
+                                                        )
+                                                            : (
+                                                                <>
+                                                                    <div className='progress'>
+                                                                        <div className="progress-bar" style={{ width: `${progressPorcent}%` }}>{progressPorcent}%</div>
+                                                                    </div>
+                                                                </>
+                                                            )
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div className="col">
+                                                    <form onSubmit={handleSubmitImg} className='d-flex flex-column gap-3'>
+                                                        <input
+                                                            type="file"
+                                                            id="fileInput"
+                                                            accept="image/*"
+                                                            style={{ display: 'none' }}
+                                                        />
+                                                        <label htmlFor="fileInput" className="btn btn-primary">Atualizar imagem</label>
+                                                        <button className='btn btn-success'>Enviar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+
                                             <div className="row">
                                                 <div className="col-4">
                                                     <div className="form-group mb-3">

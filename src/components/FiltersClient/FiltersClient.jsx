@@ -1,5 +1,3 @@
-import ClearIcon from '@mui/icons-material/Clear';
-import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import TuneIcon from '@mui/icons-material/Tune';
 import $ from "jquery";
@@ -51,71 +49,7 @@ const FiltersClient = ({ data, setFilteredData }) => {
             />
           </div>
         </div>
-        {/* <div className="col">
-          <div className="mb-3">
-            <label htmlFor="inputNomeClientePesquisa" className="form-label">Nome</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputNomeClientePesquisa"
-              placeholder="Pesquisar nome"
-              value={nameFilter}
-              onChange={e => setNameFilter(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="col">
-          <div className="mb-3">
-            <label htmlFor="inputEmailClientePesquisa" className="form-label">E-mail</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputEmailClientePesquisa"
-              placeholder="Selecionar email"
-              value={emailFilter}
-              onChange={e => setEmailFilter(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="col">
-          <div className="mb-3">
-            <label htmlFor="inputCpfClientePesquisa" className="form-label">CPF</label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputCpfClientePesquisa"
-              placeholder="Pesquisar CPF"
-              value={cpfFilter}
-              onChange={e => setCpfFilter(e.target.value)}
-            />
-          </div>
-        </div> */}
       </div>
-      {/* 
-      <div className="buttons d-flex justify-content-end gap-1">
-        <button
-          type="button"
-          className="btn btn-success d-flex align-items-center"
-          onClick={handleFilter}
-        >
-          <SearchIcon />
-          Buscar
-        </button>
-        <button
-          type="button"
-          className="btn btn-danger d-flex align-items-center"
-          onClick={() => {
-            setNameFilter('');
-            setEmailFilter('');
-            setCpfFilter('');
-            setBirthDateFilter('')
-            setFilteredData(data);
-          }}
-        >
-          <ClearIcon />
-          Limpar
-        </button>
-      </div> */}
     </div>
   );
 };

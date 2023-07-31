@@ -1,0 +1,24 @@
+.image-container {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .progress-bar {
+    height: 100%;
+  }
+  

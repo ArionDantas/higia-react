@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import ModalExclusaoUsuario from '../ModalExclusao/ModalExclusao';
 import axios from 'axios';
 import FiltersProduct from '../FiltersProduct/FiltersProduct';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -8,16 +9,19 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Link } from 'react-router-dom';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import AddIcon from '@mui/icons-material/Add';
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/all';
 
 const getProducts = async () => {
     const response = await axios.get(apiKey);
-    return response.data.content;
+    return response.data;
 };
 
 const ResultProducts = () => {
+
+    const [showModal, setShowModal] = useState(false);
 
     const { data: initialData, isLoading } = useQuery({
         queryKey: ['products'],
@@ -34,10 +38,15 @@ const ResultProducts = () => {
         width: '100px',
     }
 
+    const handleExcluirUsuario = () => {
+        console.log('Usuário excluído com sucesso!');
+        setShowModal(false);
+    };
+
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
             <div className='shadow-sm px-2 py-3 mb-5 rounded d-flex align-items-center gap-3'>
-                <img src="src/img/logo-higia-bgremove.png" alt="" srcset="" style={style} />
+                <img src="src/img/logo-higia-bgremove.png" alt="Logo da Higia" style={style} />
                 <h3>Produtos</h3>
             </div>
 
@@ -65,14 +74,13 @@ const ResultProducts = () => {
 
                     </div>
                 </div>
-                <hr style={{zIndex: -1, position: 'relative' }}/>
+                <hr style={{ zIndex: -1, position: 'relative' }} />
 
                 <table className="table table-hover align-middle">
                     <thead className='table'>
                         <tr>
                             <th>ID</th>
                             <th>Código de barras</th>
-                            <th>Nome</th>
                             <th>Descrição</th>
                             <th>Tipo</th>
                             <th>Valor</th>
@@ -85,29 +93,39 @@ const ResultProducts = () => {
                                 <LoadingSpinner />
                             </>
                         ) : (
-                            data?.map(product => (
-                                <tr key={product.id}>
-                                    <td>{product.id}</td>
-                                    <td>{product.ean}</td>
-                                    <td>{product.firstName}</td>
-                                    <td>{product.description}</td>
-                                    <td>{product.type}</td>
-                                    <td>{'R$' + `FAKE VALUE`}</td>
+                            data?.map(products => (
+                                <tr key={products.id}>
+                                    <td>{products.id}</td>
+                                    <td>{products.ean}</td>
+                                    <td>{products.description}</td>
+                                    <td>{products.type}</td>
+                                    <td>{'R$' + `${products.value}`}</td>
                                     {/* <td>{'R$' + product.value}</td> */}
-                                    <td className="text-center">
-                                        <div className='d-flex gap-1'>
-                                            <Link to={`/product/viewProduct/${product.id}`}>
+                                    <td className="text-center d-flex gap-1">
+                                            <Link to={`/product/viewProduct/${products.id}`}>
                                                 <button type="button" className="btn btn-primary">
                                                     <VisibilityIcon
                                                     />
                                                 </button>
                                             </Link>
-                                            <Link to={`/product/editProduct/${product.id}`}>
-                                                <button type="button" className="btn btn-danger">
+                                            <Link to={`/product/editProduct/${products.id}`}>
+                                                <button type="button" className="btn btn-warning">
                                                     <EditIcon />
                                                 </button>
                                             </Link>
-                                        </div>
+                                            {/* <Link to={`/product/editProduct/${product.id}`}> */}
+                                            <button className="btn btn-danger" onClick={() => setShowModal(true)}>
+                                                <ClearIcon />
+                                            </button>
+
+                                            <ModalExclusaoUsuario
+                                                who={'produto'}
+                                                text={'Deseja realmente excluir produto?'}
+                                                show={showModal}
+                                                onClose={() => setShowModal(false)}
+                                                onConfirm={handleExcluirUsuario}
+                                            />
+                                            {/* </Link> */}
                                     </td>
                                 </tr>
                             ))
