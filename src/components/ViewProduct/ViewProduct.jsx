@@ -66,6 +66,12 @@ const ViewClient = () => {
                             )}
                             {isSuccess && (
                                 <div className='card-view-produto'>
+                                    <div className="row">
+                                        <div className="col d-flex flex-column">
+                                        <label htmlFor="idProductView">Imagem:</label>
+                                            <img src={product.content.imgUrl} alt={product.content.title}  className='border rounded py-1 my-3' width={200} height={200} />
+                                        </div>
+                                    </div>
 
                                     <div className="row">
                                         <div className="col-4">
@@ -96,34 +102,6 @@ const ViewClient = () => {
 
 
                                     <div className="row">
-
-                                        <div className="col">
-                                            <div className="form-group mb-3">
-                                                <label htmlFor="nomeProdutoView">Nome:</label>
-                                                <input
-                                                    id="nomeProdutoView"
-                                                    className="form-control"
-                                                    type="text"
-                                                    disabled
-                                                    value={product.content.name == null ? '' : product.name}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-4">
-                                            <div className="form-group mb-3">
-                                                <label htmlFor="tipoProdutoView">Tipo:</label>
-                                                <input
-                                                    id="tipoProdutoView"
-                                                    className="form-control"
-                                                    type="text"
-                                                    disabled
-                                                    value={product.content.type == null ? '' : product.content.type}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-
                                         <div className="col">
                                             <div className="form-group mb-3">
                                                 <label htmlFor="descricaoProdutoView">Descrição:</label>
@@ -133,6 +111,19 @@ const ViewClient = () => {
                                                     type="text"
                                                     disabled
                                                     value={product.content.description == null ? '' : product.content.description}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="col-4">
+                                            <div className="form-group mb-3">
+                                                <label htmlFor="tipoProdutoView">Tipo:</label>
+                                                <input
+                                                    id="tipoProdutoView"
+                                                    className="form-control"
+                                                    type="text"
+                                                    disabled
+                                                    value={product.content.type == null ? '' : product.content.type}
                                                 />
                                             </div>
                                         </div>

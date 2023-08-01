@@ -3,20 +3,29 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+
+  const initialUser = JSON.parse(localStorage.getItem("user"));
+
+  const [user, setUser] = useState(initialUser);
 
   useEffect(() => {
-    const userToken = localStorage.getItem("user_token");
-    const usersStorage = localStorage.getItem("users_bd");
+    // Atualize o localStorage quando o estado do usuário mudar
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+  // const [user, setUser] = useState();
 
-    if (userToken && usersStorage) {
-      const hasUser = JSON.parse(usersStorage)?.filter(
-        (user) => user.email === JSON.parse(userToken).email
-      );
+  // useEffect(() => {
+  //   const userToken = localStorage.getItem("user_token");
+  //   const usersStorage = localStorage.getItem("users_bd");
 
-      if (hasUser) setUser(hasUser[0]);
-    }
-  }, []);
+  //   if (userToken && usersStorage) {
+  //     const hasUser = JSON.parse(usersStorage)?.filter(
+  //       (user) => user.email === JSON.parse(userToken).email
+  //     );
+
+  //     if (hasUser) setUser(hasUser[0]);
+  //   }
+  // }, []);
 
   const printNames = () => {
     const emailUser = JSON.parse(localStorage.getItem('users_bd'));
@@ -66,8 +75,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signout = () => {
+    // setUser(null);
+    // localStorage.removeItem("user_token");
+
     setUser(null);
-    localStorage.removeItem("user_token");
+    localStorage.removeItem("user");
   };
 
   return (
