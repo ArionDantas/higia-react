@@ -14,34 +14,51 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/all';
 
-const getProducts = async () => {
-    const response = await axios.get(apiKey);
-    return response.data;
-};
+// const deleteProduct = async
 
 const ResultProducts = () => {
-
     const [showModal, setShowModal] = useState(false);
 
-    const { data: initialData, isLoading } = useQuery({
-        queryKey: ['products'],
-        queryFn: getProducts
-    });
-
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        setData(initialData);
-    }, [initialData]);
+    const getProducts = async () => {
+        const response = await axios.get(apiKey);
+        return response.data;
+    };
+        
+        const { data: initialData, isLoading } = useQuery({
+            queryKey: ['products'],
+            queryFn: getProducts
+        });
+    
+        const [data, setData] = useState([]);
+    
+        useEffect(() => {
+            setData(initialData);
+        }, [initialData]);
 
     const style = {
         width: '100px',
     }
 
-    const handleExcluirUsuario = () => {
-        console.log('Usuário excluído com sucesso!');
+    const deleteProduct = async (productId) => {
+
         setShowModal(false);
+        try {
+            const url = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/${productId}`;
+
+            const response = await axios.delete(url);
+
+            if (response.status === 200) {
+                console.log('Produto excluído com sucesso!');
+            }
+        } catch (error) {
+            console.error('Erro ao excluir o produto:', error);
+        }
+
+        window.location.reload(true)
+
     };
+
+    console.log(data);  
 
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
@@ -102,30 +119,30 @@ const ResultProducts = () => {
                                     <td>{'R$' + `${products.value}`}</td>
                                     {/* <td>{'R$' + product.value}</td> */}
                                     <td className="text-center d-flex gap-1">
-                                            <Link to={`/product/viewProduct/${products.id}`}>
-                                                <button type="button" className="btn btn-primary">
-                                                    <VisibilityIcon
-                                                    />
-                                                </button>
-                                            </Link>
-                                            <Link to={`/product/editProduct/${products.id}`}>
-                                                <button type="button" className="btn btn-warning">
-                                                    <EditIcon />
-                                                </button>
-                                            </Link>
-                                            {/* <Link to={`/product/editProduct/${product.id}`}> */}
-                                            <button className="btn btn-danger" onClick={() => setShowModal(true)}>
-                                                <ClearIcon />
+                                        <Link to={`/product/viewProduct/${products.id}`}>
+                                            <button type="button" className="btn btn-primary">
+                                                <VisibilityIcon
+                                                />
                                             </button>
+                                        </Link>
+                                        <Link to={`/product/editProduct/${products.id}`}>
+                                            <button type="button" className="btn btn-warning">
+                                                <EditIcon />
+                                            </button>
+                                        </Link>
+                                        {/* <Link to={`/product/editProduct/${product.id}`}> */}
+                                        <button className="btn btn-danger" onClick={() => setShowModal(true)}>
+                                            <ClearIcon />
+                                        </button>
 
-                                            <ModalExclusaoUsuario
-                                                who={'produto'}
-                                                text={'Deseja realmente excluir produto?'}
-                                                show={showModal}
-                                                onClose={() => setShowModal(false)}
-                                                onConfirm={handleExcluirUsuario}
-                                            />
-                                            {/* </Link> */}
+                                        <ModalExclusaoUsuario
+                                            who={'produto'}
+                                            text={'Deseja realmente excluir produto?'}
+                                            show={showModal}
+                                            onClose={() => setShowModal(false)}
+                                            onConfirm={() => deleteProduct(products.id)} // Correção aqui
+                                        />
+                                        {/* </Link> */}
                                     </td>
                                 </tr>
                             ))

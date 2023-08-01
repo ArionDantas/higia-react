@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { storage } from "../../services/firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import UploadImg from '../../img/upload-img.svg'
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -9,6 +12,38 @@ import SaveIcon from '@mui/icons-material/Save';
 import Navbar from '../Navbar';
 
 const NewProduct = () => {
+
+    const [imgURL, setImgURL] = useState(UploadImg);
+    const [progressPorcent, setPorgessPorcent] = useState(0);
+
+    console.log(imgURL);
+
+    const handleSubmitImg = (event) => {
+        event.preventDefault();
+        const file = event.target[0]?.files[0];
+        if (!file) return;
+
+        const storageRef = ref(storage, `images/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const progress = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                setPorgessPorcent(progress);
+            },
+            (error) => {
+                alert(error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImgURL(downloadURL);
+                });
+            }
+        );
+    };
 
     const [formState, setFormState] = useState({
         ean: '',
@@ -32,29 +67,33 @@ const NewProduct = () => {
     const mutation = useMutation(addProduct);
 
     const handleSubmit = () => {
+
+
+
         const formData = {
-          ean: formState.ean,
-          type: formState.type,
-          description: formState.description,
-          value: formState.value,
-          saleFree: formState.saleFre,
+            ean: formState.ean,
+            type: formState.type,
+            description: formState.description,
+            value: formState.value,
+            saleFree: formState.saleFre,
+            imgUrl: imgURL
         };
-    
+
         mutation.mutate(formData);
-      };
-    
-      const handleInputChange = (event) => {
+    };
+
+    const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormState((prevState) => ({
-          ...prevState,
-          [name]: value,
+            ...prevState,
+            [name]: value,
         }));
-      };
-    
-      const isFormValid = () => {
+    };
+
+    const isFormValid = () => {
         const values = Object.values(formState);
         return values.every((value) => value.trim() !== '');
-      };
+    };
 
     return (
         <div className='section-container'>
@@ -66,7 +105,51 @@ const NewProduct = () => {
                         <div className='content-view-client shadow rounded p-5'>
                             <h1 className='mb-4'>Cadastrar Produto</h1>
                             <div className='card-view-produto'>
+
+                                <div className="d-flex">
+                                    <form onSubmit={handleSubmitImg} className='d-flex flex-column gap-3'>
+                                        <input
+                                            type="file"
+                                            id="fileInput"
+                                            accept="image/*"
+                                            style={{ display: 'none' }}
+                                        />
+                                        <label htmlFor="fileInput" className="btn btn-primary">Atualizar imagem</label>
+                                        <button className='btn btn-success'>Enviar</button>
+                                    </form>
+                                </div>
+
                                 <form action="post">
+                                    <div className="row d-flex align-items-center mb-3">
+                                        <div className="col d-flex flex-column gap-2 image-container mb-3">
+
+                                            {imgURL && imgURL !== UploadImg ? (
+                                                <img src={imgURL} alt="Imagem 1" className='border rounded p-1' />
+                                            ) : (
+                                                <img src={UploadImg} alt="Imagem Padrão" className='border rounded p-1' />
+                                            )}
+
+                                            <div>
+                                                {progressPorcent === 100 ? (
+                                                    <>
+                                                        <div className='progress'>
+                                                            <div className="progress-bar bg-success" style={{ width: `${progressPorcent}%` }}>Sucesso!</div>
+                                                        </div>
+                                                    </>
+                                                )
+                                                    : (
+                                                        <>
+                                                            <div className='progress'>
+                                                                <div className="progress-bar" style={{ width: `${progressPorcent}%` }}>{progressPorcent}%</div>
+                                                            </div>
+                                                        </>
+                                                    )
+                                                }
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                        </div>
+                                    </div>
                                     <div className="row">
                                         <div className="col">
                                             <div className="form-group mb-3">
@@ -81,16 +164,6 @@ const NewProduct = () => {
                                                 />
                                             </div>
                                         </div>
-                                        {/* <div className="col">
-                                            <div className="form-group mb-3">
-                                                <label htmlFor="nomeProdutoView">Nome:</label>
-                                                <input
-                                                    id="nomeProdutoView"
-                                                    className="form-control"
-                                                    type="text"
-                                                />
-                                            </div>
-                                        </div> */}
                                     </div>
 
                                     <div className="row">

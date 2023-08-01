@@ -1,6 +1,7 @@
 import React from 'react';
 
-const ModalExclusaoUsuario = ({who, text, show, onClose, onConfirm }) => {
+const ModalExclusaoUsuario = ({who, text, show, onClose, onConfirm, id }) => {
+
   const modalStyle = {
     display: show ? 'block' : 'none',
     backgroundColor: 'rgba(0, 0, 0, 0.2)',

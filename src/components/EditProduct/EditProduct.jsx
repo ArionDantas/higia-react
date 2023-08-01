@@ -47,18 +47,18 @@ const EditProduct = () => {
     );
   };
 
-  const { cpf } = useParams();
+  const { id } = useParams();
 
-  const apiKey = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/${cpf}`;
+  const apiKey = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/${id}`;
 
   const getProduct = async () => {
     const response = await axios.get(apiKey);
     return response.data;
   };
 
-  const { data: product, isLoading, isError } = useQuery({
-    queryKey: ['product'],
-    queryFn: getProduct
+  const { data: product, isLoading, isError, isSuccess } = useQuery({
+    queryKey: ['product', id],
+    queryFn: getProduct,
   });
 
   const [editedProduct, setEditedProduct] = useState({});
@@ -80,34 +80,55 @@ const EditProduct = () => {
     }));
   };
 
-  const handleSubmit = async () => {
-    const { cpf, email, password, firstName, lastName, birthDate, phone, isActive } = editedProduct.content;
+  const [formState, setFormState] = useState({
+    ean: '',
+    type: '',
+    description: '',
+    value: '',
+    saleFree: '',
+  });
 
+  const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/';
+
+  const addProduct = async (newProductData) => {
     try {
-      const response = await axios.post(
-        'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/customers/',
-        {
-          cpf: cpf,
-          email: email,
-          password: password,
-          firstName: firstName,
-          lastName: lastName,
-          phone: phone,
-          birthDate: '2023-07-04T00:00:00.000+00:00',
-          isActive: isActive
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
-      console.log(response.data);
+      const response = await axios.post(apiKey, newProductData);
+      return response.data;
     } catch (error) {
-      console.error(error);
+      throw new Error('Erro ao adicionar o produto');
     }
   };
 
+  const mutation = useMutation(addProduct);
+
+  const handleSubmit = () => {
+
+
+
+    const formData = {
+      ean: formState.ean,
+      type: formState.type,
+      description: formState.description,
+      value: formState.value,
+      saleFree: formState.saleFre,
+      imgUrl: imgURL
+    };
+
+    mutation.mutate(formData);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const isFormValid = () => {
+    const values = Object.values(formState);
+    return values.every((value) => value.trim() !== '');
+  };
   return (
     <div className="section-container">
       <div className="content">
@@ -117,17 +138,19 @@ const EditProduct = () => {
             <div className="content-view-client shadow rounded p-5">
               <h1 className="mb-4">Editar Produto</h1>
 
-              {isLoading ? (
+              {isLoading && (
                 <>
                   <LoadingSpinner />
                   <LoadingProduct />
                 </>
-              ) : isError ? (
+              )}
+              {isError && (
                 <>
                   <ErrorSearch message={'Produto não foi encontrado!'} onCloseTo={'/product'} />
                   <LoadingProduct />
                 </>
-              ) : (
+              )}
+              {isSuccess && (
                 <div className='card-view-produto'>
 
                   <div className="row d-flex align-items-center mb-3">

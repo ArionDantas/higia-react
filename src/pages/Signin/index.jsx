@@ -32,6 +32,7 @@ const Signin = () => {
   return (
     <C.Container>
       <C.Content>
+        <img src="src/img/logo-higia-bgremove.png" alt="Logo higia" width={100} height={100} />
         <h2>Login Higia</h2>
         <Input
           type="email"
