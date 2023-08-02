@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import FiltersClient from '../FiltersClient/FiltersClient';
-import ModalExclusaoUsuario from '../ModalExclusao/ModalExclusao';
+// import ModalExclusaoUsuario from '../ModalExclusao/ModalExclusao';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -42,10 +42,10 @@ const ResultClients = () => {
         setData(initialData);
     }, [initialData]);
 
-    const handleExcluirUsuario = () => {
-        console.log('Usuário excluído com sucesso!');
-        setShowModal(false);
-    }
+    // const handleExcluirUsuario = () => {
+    //     console.log('Usuário excluído com sucesso!');
+    //     setShowModal(false);
+    // }
 
     const style = {
         width: '100px',
@@ -109,13 +109,13 @@ const ResultClients = () => {
                                             <ClearIcon />
                                         </button>
 
-                                        <ModalExclusaoUsuario
+                                        {/* <ModalExclusaoUsuario
                                             who={'cliente'}
                                             text={'Deseja realmente excluir cliente?'}
                                             show={showModal}
-                                            onClose={() => setShowModal(false)}
-                                            onConfirm={handleExcluirUsuario}
-                                        />
+                                            // onClose={() => setShowModal(false)}
+                                            // onConfirm={handleExcluirUsuario}
+                                        /> */}
 
                                     </td>
                                 </tr>
