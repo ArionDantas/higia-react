@@ -11,6 +11,7 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
 
+const imgURL = new URL('/src/img/logo-higia-bgremove.png', import.meta.url).href;
 
 const apiKey = 'https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/all';
 
@@ -64,7 +65,7 @@ const ResultProducts = () => {
     return (
         <div className="filtros-pesquisa p-3 mb-5 bg-body-tertiary rounded">
             <div className='shadow-sm px-2 py-3 mb-5 rounded d-flex align-items-center gap-3'>
-                <img src="src/img/logo-higia-bgremove.png" alt="Logo da Higia" style={style} />
+                <img src={imgURL} alt="Logo da Higia" style={style} />
                 <h3>Produtos</h3>
             </div>
 

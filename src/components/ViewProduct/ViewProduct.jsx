@@ -5,7 +5,8 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 // import { useQueryClient } from '../../services/queryCliente';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import viewClientImage from '../../img/viewClient.svg';
+const viewClientImage = new URL('/src/img/viewClient.svg', import.meta.url).href;
+
 import LoadingProduct from '../LoadingProduct/LoadingProduct';
 import ErrorSearch from '../ErrorSearch/ErrorSearch';
 import Navbar from '../Navbar';

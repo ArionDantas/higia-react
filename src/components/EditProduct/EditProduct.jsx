@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { storage } from "../../services/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useQuery, useMutation } from '@tanstack/react-query';
-import UploadImg from '../../img/upload-img.svg'
+const UploadImg = new URL('/src/img/upload-img.svg', import.meta.url).href;
 import axios from 'axios';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import viewClientImage from '../../img/viewClient.svg';

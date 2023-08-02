@@ -8,8 +8,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import viewEditUser from '../../img/editUser.svg';
-import UploadImg from '../../img/upload-img.svg'
+const viewEditUser = new URL('/src/img/editUser.svg', import.meta.url).href;
+const UploadImg = new URL('/src/img/upload-img.svg', import.meta.url).href;
 import SaveIcon from '@mui/icons-material/Save';
 import LoadingClient from '../LoadingClient/LoadingClient';
 import ErrorSearch from '../ErrorSearch/ErrorSearch';

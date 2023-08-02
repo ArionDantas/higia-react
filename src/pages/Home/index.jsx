@@ -5,6 +5,8 @@ import useAuth from "../../hooks/useAuth";
 // import * as C from "./styles";
 import Navbar from '../../components/Navbar'
 
+const imgURL = new URL('/src/img/welcome.svg', import.meta.url).href;
+
 
 const Home = () => {
   // const { signout } = useAuth();
@@ -18,7 +20,7 @@ const Home = () => {
         <Navbar />
         <div className="d-flex flex-column justify-content-center align-items-center w-100 py-5">
           <h1>Seja bem-vindo administrador</h1>
-          <img src="src/img/welcome.svg" alt="" width={450}/>
+          <img src={imgURL} alt="" width={450}/>
         </div>
         {/* <h1>Home</h1>
         <h1>Email do usuário</h1>

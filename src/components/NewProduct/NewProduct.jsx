@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { storage } from "../../services/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import UploadImg from '../../img/upload-img.svg'
+const UploadImg = new URL('/src/img/upload-img.svg', import.meta.url).href;
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import viewClientImage from '../../img/viewClient.svg';
+const viewClientImage = new URL('/src/img/viewClient.svg', import.meta.url).href;
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import SaveIcon from '@mui/icons-material/Save';
 import Navbar from '../Navbar';
@@ -73,7 +73,7 @@ const NewProduct = () => {
         const formData = {
             ean: formState.ean,
             type: formState.type,
-            description:formState.description.trim(),
+            description: formState.description.trim(),
             value: formState.value,
             saleFree: formState.saleFre,
             imgUrl: imgURL
