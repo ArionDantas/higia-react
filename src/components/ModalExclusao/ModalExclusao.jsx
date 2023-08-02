@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ModalExclusaoUsuario = ({who, text, show, onClose, onConfirm, id }) => {
+const ModalExclusaoUsuario = ({who, text, show, onClose, id }) => {
 
   const modalStyle = {
     display: show ? 'block' : 'none',
@@ -12,6 +12,25 @@ const ModalExclusaoUsuario = ({who, text, show, onClose, onConfirm, id }) => {
     right: 0,
     zIndex: 9999,
   };
+
+  const deleteProduct = async (productId) => {
+    console.log(productId);
+    
+    try {
+        const url = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/${productId}`;
+
+        const response = await axios.delete(url);
+
+        if (response.status === 200) {
+            console.log('Produto excluído com sucesso!');
+        }
+    } catch (error) {
+        console.error('Erro ao excluir o produto:', error);
+    }
+
+    window.location.reload(true)
+
+};
 
   return (
     <div className={`modal ${show ? 'show' : ''}`} style={modalStyle}>
@@ -28,7 +47,7 @@ const ModalExclusaoUsuario = ({who, text, show, onClose, onConfirm, id }) => {
             <button type="button" className="btn btn-secondary" onClick={onClose}>
               Fechar
             </button>
-            <button type="button" className="btn btn-danger" onClick={onConfirm}>
+            <button type="button" className="btn btn-danger" onClick={deleteProduct(id)}>
               Excluir
             </button>
           </div>

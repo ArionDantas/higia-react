@@ -144,7 +144,6 @@ const NewProduct = () => {
               {isSuccess && (
                 <div className='card-view-produto'>
                   <div className="d-flex">
-
                     <form onSubmit={handleSubmitImg} className='d-flex flex-column gap-3'>
                       <input
                         type="file"
@@ -254,12 +253,11 @@ const NewProduct = () => {
                             className="form-control"
                             type="text"
                             name='saleFree'
-                            value={formState.saleFree}
+                            value={formState.saleFree || 0}
                             onChange={handleInputChange}
                           />
                         </div>
                       </div>
-
                     </div>
 
 
@@ -273,24 +271,25 @@ const NewProduct = () => {
                       <button
                         type='submit'
                         className='btn btn-success d-flex gap-1 px-4 py-2'
-                        disabled={mutation.isLoading} /* || !isFormValid() */
+                        // onClick={(() => navigate('/product'))}
+                        // disabled={mutation.isLoading} /* || !isFormValid() */
                       >
                         <SaveIcon />
                         Salvar
                       </button>
                     </div>
-                    {/* Exibir mensagem de erro */}
+                    {/* Exibir mensagem de erro
                     {mutation.isError && (
                       <div className='alert alert-danger mt-3' role='alert'>
                         Ocorreu um erro ao adicionar o produto: {mutation.error.message}
                       </div>
                     )}
-                    {/* Exibir mensagem de sucesso, se a mutação foi bem-sucedida */}
+                    {/* Exibir mensagem de sucesso, se a mutação foi bem-sucedida 
                     {mutation.isSuccess && (
                       <div className='alert alert-success mt-3' role='alert'>
                         Produto adicionado com sucesso!
                       </div>
-                    )}
+                    )} */}
                   </form>
                 </div>
               )}

@@ -73,7 +73,7 @@ const NewProduct = () => {
         const formData = {
             ean: formState.ean,
             type: formState.type,
-            description: formState.description,
+            description:formState.description.trim(),
             value: formState.value,
             saleFree: formState.saleFre,
             imgUrl: imgURL
@@ -95,19 +95,6 @@ const NewProduct = () => {
         const existImg = imgURL !== UploadImg
         return values.every((value) => value.trim() !== '') && existImg;
     };
-
-    // const handleReset = () => {
-    //     setImgURL(UploadImg);
-    //     setPorgessPorcent(0);
-    //     setFormState({
-    //         ean: '',
-    //         type: '',
-    //         description: '',
-    //         value: '',
-    //         saleFree: '',
-    //     });
-    //     setMutation(useMutation(addProduct));
-    // };
 
     return (
         <div className='section-container'>

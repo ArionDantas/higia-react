@@ -33,13 +33,6 @@ function Navbar() {
                                     className={`d-block link-body-emphasis text-decoration-none dropdown-toggle text-dark${dropdownOpen ? " show" : ""}`}
                                     onClick={toggleDropdown}
                                 >
-                                    {/* <img
-                                        src="src\img\user.png"
-                                        alt="mdo"
-                                        width="32"
-                                        height="32"
-                                        className="rounded-circle"
-                                    /> */}
 
                                     <AdminPanelSettingsIcon sx={{width: '32px', height: '32px'}}/>
                                 </a>

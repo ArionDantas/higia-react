@@ -41,7 +41,8 @@ const ResultProducts = () => {
 
     const deleteProduct = async (productId) => {
 
-        setShowModal(false);
+        console.log(productId);
+        // setShowModal(false);
         try {
             const url = `https://api-farmacia-higia-java-d263a377630d.herokuapp.com/products/${productId}`;
 
@@ -131,17 +132,17 @@ const ResultProducts = () => {
                                             </button>
                                         </Link>
                                         {/* <Link to={`/product/editProduct/${product.id}`}> */}
-                                        <button className="btn btn-danger" onClick={() => setShowModal(true)}>
+                                        <button className="btn btn-danger" onClick={() => deleteProduct(products.id)}>
                                             <ClearIcon />
                                         </button>
 
-                                        <ModalExclusaoUsuario
+                                        {/* <ModalExclusaoUsuario
                                             who={'produto'}
                                             text={'Deseja realmente excluir produto?'}
                                             show={showModal}
                                             onClose={() => setShowModal(false)}
                                             onConfirm={() => deleteProduct(products.id)} // Correção aqui
-                                        />
+                                        /> */}
                                         {/* </Link> */}
                                     </td>
                                 </tr>
