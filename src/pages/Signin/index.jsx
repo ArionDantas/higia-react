@@ -5,6 +5,9 @@ import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
+const imgUrl = new URL('/src/img/logo-higia-bgremove.png', import.meta.url).href;
+
+
 const Signin = () => {
   const { signin } = useAuth();
   const navigate = useNavigate();
@@ -32,7 +35,7 @@ const Signin = () => {
   return (
     <C.Container>
       <C.Content>
-        <img src="src/img/logo-higia-bgremove.png" alt="Logo higia" width={100} height={100} />
+        <img src={imgUrl} alt="Logo higia" width={100} height={100} />
         <h2>Login Higia</h2>
         <Input
           type="email"
